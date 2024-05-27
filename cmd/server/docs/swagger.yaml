@@ -1,0 +1,162 @@
+definitions:
+  model.GetVPNResponse:
+    properties:
+      id:
+        type: integer
+      local_as_number:
+        type: integer
+      name:
+        type: string
+      remote_as_number:
+        type: integer
+      type:
+        type: string
+      vni:
+        type: integer
+    type: object
+  model.IDResponse:
+    properties:
+      id:
+        type: integer
+    type: object
+info:
+  contact: {}
+  description: Api Endpoints for Go Server
+  title: Go Rest Api
+paths:
+  /api/vpn/{id}:
+    get:
+      parameters:
+      - description: VPN ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.GetVPNResponse'
+      summary: Get a specific VPN
+      tags:
+      - VPNs
+  /api/vpn/add:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: VPN name
+        in: body
+        name: name
+        required: true
+        schema:
+          type: string
+      - description: VPN type
+        in: body
+        name: type
+        required: true
+        schema:
+          type: string
+      - description: VPN localAsNumber
+        in: body
+        name: localAsNumber
+        required: true
+        schema:
+          type: integer
+      - description: VPN remoteAsNumber
+        in: body
+        name: remoteAsNumber
+        required: true
+        schema:
+          type: integer
+      - description: VPN vni
+        in: body
+        name: vni
+        required: true
+        schema:
+          type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.IDResponse'
+      summary: Add a specific VPN
+      tags:
+      - VPNs
+  /api/vpn/delete/{id}:
+    delete:
+      parameters:
+      - description: VPN ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.GetVPNResponse'
+      summary: Delete a specific VPN
+      tags:
+      - VPNs
+  /api/vpn/update:
+    patch:
+      consumes:
+      - application/json
+      parameters:
+      - description: VPN name
+        in: body
+        name: name
+        schema:
+          type: string
+      - description: VPN type
+        in: body
+        name: type
+        schema:
+          type: string
+      - description: VPN localAsNumber
+        in: body
+        name: localAsNumber
+        schema:
+          type: integer
+      - description: VPN remoteAsNumber
+        in: body
+        name: remoteAsNumber
+        schema:
+          type: integer
+      - description: VPN vni
+        in: body
+        name: vni
+        schema:
+          type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.IDResponse'
+      summary: Update a specific VPN
+      tags:
+      - VPNs
+  /api/vpns:
+    get:
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/model.GetVPNResponse'
+            type: array
+      summary: Get all VPNs
+      tags:
+      - VPNs
+swagger: "2.0"

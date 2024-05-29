@@ -203,5 +203,5 @@ curl -X 'POST'   'http://0.0.0.0:8080/api/vpn/add'   -H 'accept: application/jso
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](./LICENSE) file for details.
+This project is licensed under the AGPLv3 License - see the [LICENSE](./LICENSE) file for details.
 
